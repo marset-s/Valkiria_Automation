@@ -60,7 +60,7 @@ public class TestLogin {
         if(paginaLogin.mailRequerido().equals("El email es requerido")){
             System.out.println("Pasó el test");
         } else {
-            Assertions.fail("Fallo la validación del nombre de usuario en el login.");
+            Assertions.fail("Fallo la validación del mail de usuario en el login.");
         }
 
     }
@@ -70,5 +70,9 @@ public class TestLogin {
         if (driver != null) {
             driver.quit(); // Cierra todas las ventanas y libera los recursos.
         }
+    }
+    @AfterAll
+    public static void finish() {
+        System.out.println("<<< FINALIZAN LOS TEST DE LOGIN >>>");
     }
 }
