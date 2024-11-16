@@ -17,7 +17,7 @@ public class PaginaLogin extends PaginaBase{
     private By btnEnviar = By.xpath("(//button[normalize-space()='Iniciar Sesión'])[1]");
     private  By usuarioLogiado = By.xpath("(//p[@class='chakra-text css-1eq6kar'])[1]");
 
-    private  By mailRequerido = By.xpath("(//div[@id='field-:rc:-feedback'])[1]");
+    private  By mailRequerido = By.cssSelector("body > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > form:nth-child(2) > div:nth-child(1) > div:nth-child(1)");
 
     /**
      * Hace click en "botón iniciar seción".

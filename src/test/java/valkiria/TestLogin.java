@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class TestLogin {
 
     private WebDriver driver;
@@ -31,13 +33,6 @@ public class TestLogin {
         loginPage.obtenerUrl("http://valkirias.s3-website.us-east-2.amazonaws.com/");
     }
 
-    @AfterEach
-    public void cerrarNavegador() {
-        if (driver != null) {
-            driver.quit(); // Cierra todas las ventanas y libera los recursos.
-        }
-    }
-
     @Test
     public void test_LogueoExitoso() throws InterruptedException {
         PaginaLogin paginaLogin = new PaginaLogin(driver, wait);
@@ -51,6 +46,29 @@ public class TestLogin {
             System.out.println("Pasó el test");
         } else {
             Assertions.fail("Fallo la validación del nombre de usuario en el login.");
+        }
+    }
+
+    @Test
+    public void test_LogueoMailVacio() throws InterruptedException {
+        PaginaLogin paginaLogin = new PaginaLogin(driver, wait);
+
+        paginaLogin.clickIniciarSecion();
+        paginaLogin.ingresarContrasena("Hola1234!");
+        paginaLogin.clickEnviar();
+
+        if(paginaLogin.mailRequerido().equals("El email es requerido")){
+            System.out.println("Pasó el test");
+        } else {
+            Assertions.fail("Fallo la validación del nombre de usuario en el login.");
+        }
+
+    }
+
+    @AfterEach
+    public void cerrarNavegador() {
+        if (driver != null) {
+            driver.quit(); // Cierra todas las ventanas y libera los recursos.
         }
     }
 }
