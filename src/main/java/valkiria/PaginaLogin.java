@@ -12,8 +12,8 @@ public class PaginaLogin extends PaginaBase{
     }
 
     private By btnIniciarSecion = By.xpath("(//p[normalize-space()='INICIAR SESIÓN'])[1]");
-    private By correo = By.xpath("(//input[@id='field-:r5e:'])[1]");
-    private By contrasena = By.xpath("(//input[@id='field-:r5f:'])[1]");
+    private By correo = By.name("email");
+    private By contrasena = By.name("password");
     private By btnEnviar = By.xpath("(//button[normalize-space()='Iniciar Sesión'])[1]");
     private  By usuarioLogiado = By.xpath("(//p[@class='chakra-text css-1eq6kar'])[1]");
 
