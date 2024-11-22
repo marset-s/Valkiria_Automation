@@ -19,6 +19,7 @@ public class PaginaLogin extends PaginaBase{
 
     private  By mailRequerido = By.cssSelector("body > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > form:nth-child(2) > div:nth-child(1) > div:nth-child(1)");
 
+    private By contrasenaIncorrecta = By.xpath("(//div[@role='alert'])[1]");
     /**
      * Hace click en "botón iniciar seción".
      *
@@ -69,6 +70,11 @@ public class PaginaLogin extends PaginaBase{
     public String mailRequerido() throws InterruptedException {
         System.out.println("Se valida mensaje de Mail Obligatorio: " + this.obtenerTexto(mailRequerido));
         return this.obtenerTexto(mailRequerido);
+    }
+
+    public String contrasenaIncocrrecta() throws InterruptedException {
+        System.out.println("Se valida mensaje de credenciales incorrectas: " + this.obtenerTexto(contrasenaIncorrecta));
+        return this.obtenerTexto(contrasenaIncorrecta);
     }
 
 }

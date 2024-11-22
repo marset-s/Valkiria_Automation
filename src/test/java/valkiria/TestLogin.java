@@ -5,10 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestLogin {
 
@@ -61,6 +59,23 @@ public class TestLogin {
             System.out.println("Pasó el test");
         } else {
             Assertions.fail("Fallo la validación del mail de usuario en el login.");
+        }
+
+    }
+
+    @Test
+    public void test_contrasenaIncorrecta() throws InterruptedException {
+        PaginaLogin paginaLogin = new PaginaLogin(driver, wait);
+
+        paginaLogin.clickIniciarSecion();
+        paginaLogin.ingresarCorreo("ser@gmail.com");
+        paginaLogin.ingresarContrasena("contrasenamala");
+        paginaLogin.clickEnviar();
+
+        if(paginaLogin.contrasenaIncocrrecta().equals("Credenciales incorrectas. Por favor, verifica tu correo y contraseña.")){
+            System.out.println("Pasó el test");
+        } else {
+            Assertions.fail("Fallo la validación de credenciales incorrectas en el login.");
         }
 
     }
