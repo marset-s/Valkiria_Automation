@@ -14,37 +14,39 @@ public class PaginaRegistro extends PaginaBase {
     private By nombre = By.name("firstName");
     private By apellido = By.name("lastName");
     private By nombreUsuario = By.name("clientName");
-    private By email = By.name("\"Email\"");
+    private By email = By.name("email");
 
     private By contrasena = By.name("password");
-    private By confirmarContrasena = By.name("\"Confirmar contraseña\"");
+    private By confirmarContrasena = By.name("confirmPassword");
     private By btnRegistrarse = By.xpath("(//button[normalize-space()='Registrarse'])[1]");
-    private By textoRegistroExitoso = By.xpath("(//h2[normalize-space()='Verificación de e-mail.'])[1]");
+    private By textoRegistroExitoso = By.cssSelector("p.chakra-text.css-owepl0");
     //texto -> Registro exitoso. Serás redirigido a la página de inicio.
-    private By contrasenaDistinta = By.xpath("(//div[@id='field-:ri:-feedback'])[1]");
+    private By contrasenaDistinta = By.cssSelector("div.chakra-form__error-message.css-502kp3");
+
+    private By usuarioYaEnUso = By.id("field-:r5:-feedback");
 
     public void clickCrearCuenta() throws InterruptedException {
         this.click(btnCrearCuenta);
     }
 
     public void escribirNombre(String inputNombre) throws InterruptedException {
-        this.enviarTexto(inputNombre, nombre );
+        this.enviarTexto(inputNombre, nombre);
     }
 
     public void escribirApellido(String inputApellido) throws InterruptedException {
-        this.enviarTexto(inputApellido, apellido );
+        this.enviarTexto(inputApellido, apellido);
     }
 
     public void escribirUsuario(String inputUsuario) throws InterruptedException {
-        this.enviarTexto(inputUsuario, nombreUsuario );
+        this.enviarTexto(inputUsuario, nombreUsuario);
     }
 
-    public void escribirEmail(String inputEmail)throws InterruptedException {
-        this.enviarTexto(inputEmail, email );
+    public void escribirEmail(String inputEmail) throws InterruptedException {
+        this.enviarTexto(inputEmail, email);
     }
 
     public void escribirContrasena(String inputContrasena) throws InterruptedException {
-        this.enviarTexto(inputContrasena, contrasena );
+        this.enviarTexto(inputContrasena, contrasena);
     }
 
     public void confirmarContrasena(String inputConfirmarContrasena) throws InterruptedException {
@@ -68,4 +70,10 @@ public class PaginaRegistro extends PaginaBase {
         //Las contraseñas no coinciden
     }
 
+    public String usuarioEnUso() throws InterruptedException {
+        String res = this.obtenerTexto(usuarioYaEnUso);
+        System.out.println("Mensaje de error: " + res);
+        return res;
+
+    }
 }
